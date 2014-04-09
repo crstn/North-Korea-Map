@@ -41,19 +41,20 @@ body {
  
 </style>
 <body>
-<script src="http://d3js.org/d3.v3.min.js"></script>
-<script src="d3.geo.js"></script>
-<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script src="d3/d3.v3.min.js"></script>
+<script src="d3/d3.geo.js"></script>
+<script src="d3/topojson.v1.min.js"></script>
+<script src="d3/queue.v1.min.js"></script>
 <script>
  
-var width = 960,
-    height = 960;
+var width = 700,
+    height = 700;
 
 var projection = d3.geo.azimuthal()
     .scale(140)
     .origin([127,40])
     .mode("equidistant")
-    .translate([640, 400]);
+    .translate([width/2, height/2]);
  
 //var projection = d3.geo.azimuthalEquidistant()
 //	.scale(200)
@@ -85,7 +86,7 @@ svg.append("use")
     .attr("class", "fill")
     .attr("xlink:href", "#sphere");
  
-d3.json("world-50m.json", function(error, world) {
+d3.json("data/world-110m.json", function(error, world) {
   svg.insert("path", ".graticule")
       .datum(topojson.feature(world, world.objects.land))
       .attr("class", "land")
